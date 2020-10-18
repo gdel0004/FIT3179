@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "A simple radial chart with embedded data.",
+  "width": 1000,
+  "height": 600,
+  "title": {
+    "text": "Wind Direction in Australia",
+    "fontWeight": "normal",
+    "fontSize": 24,
+    "font": "Century Gothic",
+    "dx": 40,
+    "dy": 50,
+    "color": "#333",
+    "subtitle": "Explore the direction from which the wind is approaching in different locations around the country.",
+    "subtitleFont": "Century Gothic",
+    "subtitleColor": "#555"
+  },
+  "projection": {"type": "equirectangular"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/gdel0004/FIT3179/main/au-states.topo.json",
+        "format": {"type": "topojson", "feature": "austates"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "rgb(232,230,230)",
+        "stroke": "white"
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/gdel0004/FIT3179/main/windsimple.csv"
+      },
+      "selection": {
+        "maphover": {
+          "type": "single",
+          "fields": ["Town"],
+          "on": "mouseover",
+          "empty": "none"
+        },
+        "mapclick": {
+          "type": "single",
+          "fields": ["Town"],
+          "on": "click",
+          "empty": "none",
+          "clear": "dblclick"
+        }
+      },
+      "mark": {
+        "type": "arc",
+        "innerRadius": 0,
+        "stroke": "white",
+        "strokeWidth": 0.25,
+        "thetaOffset": 1.37444678595
+      },
+      "encoding": {
+        "opacity": {
+          "condition": [
+            {"selection": "mapclick", "value": 1},
+            {"selection": "maphover", "value": 0.8}
+          ],
+          "value": 0.6
+        },
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "longitude": {"field": "Longitutde", "type": "quantitative"},
+        "theta": {
+          "field": "Direction",
+          "type": "nominal",
+          "stack": true,
+          "sort": [
+            "E",
+            "ESE",
+            "SE",
+            "SSE",
+            "S",
+            "SSW",
+            "SW",
+            "WSW",
+            "W",
+            "WNW",
+            "NW",
+            "NNW",
+            "N",
+            "NNE",
+            "NE",
+            "ENE"
+          ],
+          "scale": {"rangeMin": 0}
+        },
+        "radius": {
+          "field": "Percent",
+          "type": "quantitative",
+          "stack": false,
+          "scale": {"type": "sqrt", "rangeMax": 40}
+        },
+        "color": {
+          "field": "Percent",
+          "title": "Proportion of days with wind direction",
+          "legend": {
+            "direction": "horizontal",
+            "gradientLength": 200,
+            "titleLimit": 250,
+            "orient": "bottom-left",
+            "titleFont": "Century Gothic"
+          },
+          "type": "quantitative",
+          "scale": {"scheme": "bluepurple", "reverse": false}
+        },
+        "tooltip": {"field": "Town", "type": "nominal"}
+      }
+    }
+  ],
+  "view": {"stroke": null},
+  "config": {}
+}
