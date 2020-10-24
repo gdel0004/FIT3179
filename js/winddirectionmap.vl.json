@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "width": 1000,
+  "width": 900,
   "height": 600,
   "title": {
     "text": "Wind Direction in Australia",
