@@ -1,0 +1,24 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/gdel0004/FIT3179/main/windspeed.csv",
+    "format": {"parse": {"Date": "utc:'%d/%m/%Y'"}}
+  },
+  "width": 400,
+  "height": 400,
+  "mark": {"type": "bar", "binSpacing": 0},
+  "encoding": {
+    "x": {
+      "bin": {"step": 1},
+      "field": "WindSpeed",
+      "title": "Wind Speed (km/h)"
+    },
+    "y": {"aggregate": "count", "title": "Number of Measurements"},
+    "color": {
+      "aggregate": "count",
+      "scale": {"scheme": "bluepurple"},
+      "legend": null
+    }
+  },
+  "config": {}
+}
