@@ -51,7 +51,7 @@
         "tooltip": [
           {
             "field": "WindSpeed",
-            "title": "Average Wind Speed",
+            "title": "Average Wind Speed (km/h)",
             "type": "quantitative",
             "aggregate": "mean",
             "format": ".2f"
