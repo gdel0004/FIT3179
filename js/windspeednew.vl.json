@@ -42,7 +42,7 @@
         "size": {"field": "Year", "legend": null, "scale": {"range": [2, 4]}},
         "y": {
           "field": "WindSpeed",
-          "title": "Average Wind Speed",
+          "title": "Average Wind Speed (km/h)",
           "type": "quantitative",
           "scale": {"domain": [10, 18]},
           "axis": {"tickMinStep": 1},
