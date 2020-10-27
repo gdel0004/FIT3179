@@ -4,7 +4,7 @@
     "url": "https://raw.githubusercontent.com/gdel0004/FIT3179/main/windspeed.csv",
     "format": {"parse": {"Date": "utc:'%d/%m/%Y'"}}
   },
-  "width": 400,
+  "width": "container",
   "height": 400,
   "mark": {"type": "bar", "binSpacing": 0},
   "encoding": {
@@ -20,5 +20,5 @@
       "legend": null
     }
   },
-  "config": {}
+  "config": {"font": "Century Gothic"}
 }
