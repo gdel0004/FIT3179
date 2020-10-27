@@ -1,0 +1,355 @@
+{
+  "hconcat": [
+    {
+      "width": 800,
+      "height": 500,
+      "resolve": {"scale": {"radius": "independent"}},
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/gdel0004/FIT3179/main/au-states.topo.json",
+            "format": {"type": "topojson", "feature": "austates"}
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "rgb(232,230,230)",
+            "stroke": "white"
+          },
+          "projection": {"type": "mercator", "center": [109, -28], "scale": 700}
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/gdel0004/FIT3179/main/windsimpledesc.csv"
+          },
+          "selection": {
+            "maphover": {
+              "type": "single",
+              "fields": ["Town"],
+              "on": "mouseover",
+              "empty": "none"
+            },
+            "mapclick": {
+              "type": "single",
+              "fields": ["Town"],
+              "on": "click",
+              "empty": "none",
+              "clear": "dblclick"
+            },
+            "State_Selection": {
+              "type": "single",
+              "fields": ["State"],
+              "bind": {
+                "input": "select",
+                "options": [
+                  null,
+                  "ACT",
+                  "NSW",
+                  "NT",
+                  "QLD",
+                  "SA",
+                  "TAS",
+                  "VIC",
+                  "WA"
+                ],
+                "name": "Filter by State: ",
+                "labels": ["Any"]
+              },
+              "empty": "all"
+            }
+          },
+          "transform": [{"filter": {"selection": "State_Selection"}}],
+          "mark": {
+            "type": "arc",
+            "innerRadius": 0,
+            "stroke": "white",
+            "strokeWidth": 0.25,
+            "thetaOffset": 1.37444678595
+          },
+          "encoding": {
+            "opacity": {
+              "condition": [
+                {"selection": "mapclick", "value": 1},
+                {"selection": "maphover", "value": 0.8}
+              ],
+              "value": 0.6
+            },
+            "latitude": {"field": "Latitude", "type": "quantitative"},
+            "longitude": {"field": "Longitutde", "type": "quantitative"},
+            "theta": {
+              "field": "Direction",
+              "type": "nominal",
+              "stack": true,
+              "sort": [
+                "E",
+                "ESE",
+                "SE",
+                "SSE",
+                "S",
+                "SSW",
+                "SW",
+                "WSW",
+                "W",
+                "WNW",
+                "NW",
+                "NNW",
+                "N",
+                "NNE",
+                "NE",
+                "ENE"
+              ],
+              "scale": {"rangeMin": 0}
+            },
+            "radius": {
+              "field": "Percent",
+              "type": "quantitative",
+              "stack": false,
+              "scale": {"type": "sqrt", "rangeMax": "40", "rangeMin": 0}
+            },
+            "color": {
+              "field": "Percent",
+              "title": "Proportion of days with wind direction",
+              "legend": {
+                "direction": "horizontal",
+                "gradientLength": 200,
+                "titleLimit": 250,
+                "orient": "bottom-left",
+                "titleFont": "Century Gothic"
+              },
+              "type": "quantitative",
+              "scale": {"scheme": "bluepurple", "reverse": false}
+            },
+            "tooltip": {"field": "Town", "type": "nominal"}
+          },
+          "projection": {"type": "mercator", "center": [109, -28], "scale": 700}
+        }
+      ]
+    },
+    {
+      "width": 400,
+      "height": 500,
+      "data": {
+        "url": "https://raw.githubusercontent.com/gdel0004/FIT3179/main/windsimpledesc.csv"
+      },
+      "transform": [
+        {"filter": {"selection": "mapclick"}},
+        {"calculate": "datum.Direction == 'N'", "as": "isNorth"}
+      ],
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/gdel0004/FIT3179/main/radius.csv"
+          },
+          "mark": {"type": "rule", "stroke": "lightgrey"},
+          "encoding": {
+            "x": {
+              "field": "x",
+              "type": "quantitative",
+              "scale": {"range": [0, 350]},
+              "axis": null
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative",
+              "scale": {"range": [0, 400]},
+              "axis": null
+            },
+            "x2": {"value": 200},
+            "y2": {"value": 225}
+          }
+        },
+        {
+          "data": {
+            "values": "r\n0\n0.05\n0.10\n0.15\n0.2\n0.25\n0.3",
+            "format": {"type": "csv"}
+          },
+          "mark": {"type": "arc", "stroke": "lightgrey", "fillOpacity": 0},
+          "encoding": {
+            "x": {"value": 200},
+            "y": {"value": 225},
+            "radius": {
+              "field": "r",
+              "title": "Proportion",
+              "type": "quantitative",
+              "scale": {"range": [0, 120]}
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "arc",
+            "innerRadius": 0,
+            "stroke": "white",
+            "strokeWidth": 1,
+            "thetaOffset": 1.37444678595
+          },
+          "encoding": {
+            "x": {"value": 200},
+            "y": {"value": 225},
+            "theta": {
+              "field": "Direction",
+              "type": "nominal",
+              "stack": true,
+              "sort": [
+                "E",
+                "ESE",
+                "SE",
+                "SSE",
+                "S",
+                "SSW",
+                "SW",
+                "WSW",
+                "W",
+                "WNW",
+                "NW",
+                "NNW",
+                "N",
+                "NNE",
+                "NE",
+                "ENE"
+              ],
+              "scale": {"rangeMin": 0}
+            },
+            "radius": {
+              "field": "Percent",
+              "type": "quantitative",
+              "stack": false,
+              "scale": {"type": "sqrt", "domain": [0, 0.3], "range": [0, 120]}
+            },
+            "color": {
+              "field": "Percent",
+              "title": "Proportion of days with wind direction",
+              "type": "quantitative",
+              "scale": {"scheme": "bluepurple", "reverse": false}
+            },
+            "tooltip": [
+              {
+                "field": "Direction",
+                "title": "Wind approaching from",
+                "type": "ordinal"
+              },
+              {
+                "field": "Percent",
+                "title": "Proportion",
+                "type": "quantitative",
+                "format": ".2f"
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 28,
+            "font": "Century Gothic",
+            "color": "#555"
+          },
+          "encoding": {
+            "x": {"value": 200},
+            "y": {"value": 50},
+            "text": {"field": "Town"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 15,
+            "align": "center",
+            "font": "Century Gothic",
+            "color": "#555"
+          },
+          "encoding": {
+            "x": {"value": 200},
+            "y": {"value": 365},
+            "text": {"field": "desc1"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 15,
+            "align": "center",
+            "font": "Century Gothic",
+            "color": "#555"
+          },
+          "encoding": {
+            "x": {"value": 200},
+            "y": {"value": 385},
+            "text": {"field": "desc2"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 15,
+            "align": "center",
+            "font": "Century Gothic",
+            "color": "#555"
+          },
+          "encoding": {
+            "x": {"value": 200},
+            "y": {"value": 405},
+            "text": {"field": "desc3"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 15,
+            "align": "center",
+            "font": "Century Gothic",
+            "color": "#555"
+          },
+          "encoding": {
+            "x": {"value": 200},
+            "y": {"value": 425},
+            "text": {"field": "desc4"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 15,
+            "align": "center",
+            "font": "Century Gothic",
+            "color": "#555"
+          },
+          "encoding": {
+            "x": {"value": 200},
+            "y": {"value": 445},
+            "text": {"field": "desc5"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 15,
+            "align": "center",
+            "font": "Century Gothic",
+            "color": "#555"
+          },
+          "encoding": {
+            "x": {"value": 200},
+            "y": {"value": 465},
+            "text": {"field": "desc6"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 15,
+            "align": "center",
+            "font": "Century Gothic",
+            "color": "#555"
+          },
+          "encoding": {
+            "x": {"value": 200},
+            "y": {"value": 485},
+            "text": {"field": "desc7"}
+          }
+        }
+      ]
+    }
+  ],
+  "view": {"stroke": null},
+  "config": {}
+}
