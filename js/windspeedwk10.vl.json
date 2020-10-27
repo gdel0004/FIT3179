@@ -1,0 +1,102 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/gdel0004/FIT3179/main/windspeed.csv",
+    "format": {"parse": {"Date": "utc:'%d/%m/%Y'"}}
+  },
+  "params": [
+    {
+      "name": "Year_above",
+      "value": 2009,
+      "bind": {
+        "input": "range",
+        "min": 2009,
+        "max": 2017,
+        "step": 1,
+        "name": "Year: "
+      }
+    }
+  ],
+  "transform": [
+    {"calculate": "year(datum.Date)==Year_above", "as": "isSelected"},
+    {"calculate": "year(datum.Date)", "as": "Year"},
+    {"filter": "datum.Year <= Year_above"}
+  ],
+  "width": 800,
+  "height": 400,
+  "title": {
+    "text": "Wind Speed in Australia",
+    "fontWeight": "normal",
+    "fontSize": 24,
+    "font": "Century Gothic",
+    "color": "#333",
+    "subtitle": "Using different locations around the country, the average wind speed varies with the seasons.",
+    "subtitleFont": "Century Gothic",
+    "subtitleColor": "#555"
+  },
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal",
+          "title": "Month",
+          "timeUnit": "month"
+        },
+        "color": {
+          "field": "isSelected",
+          "legend": null,
+          "scale": {"range": ["lightgrey", "purple"]}
+        },
+        "size": {"field": "Year", "legend": null, "scale": {"range": [2, 4]}},
+        "y": {
+          "field": "WindSpeed",
+          "title": "Average Wind Speed",
+          "type": "quantitative",
+          "scale": {"domain": [10, 18]},
+          "axis": {"tickMinStep": 1},
+          "aggregate": "mean"
+        },
+        "tooltip": [
+          {
+            "field": "WindSpeed",
+            "title": "Average Wind Speed",
+            "type": "quantitative",
+            "aggregate": "mean",
+            "format": ".2f"
+          },
+          {
+            "field": "Date",
+            "type": "temporal",
+            "title": "Month",
+            "timeUnit": "yearmonth",
+            "format": "%B, %Y"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "month(datum.Date) == 0"}],
+      "mark": {
+        "type": "text",
+        "dy": -10,
+        "dx": 10,
+        "fontSize": 15,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {"value": 20},
+        "y": {"aggregate": "mean", "field": "WindSpeed"},
+        "text": {"field": "Year", "type": "nominal"},
+        "opacity": {
+          "field": "isSelected",
+          "legend": null,
+          "scale": {"range": [0, 1], "domain": [false, true]}
+        },
+        "color": {"value": "purple"}
+      }
+    }
+  ],
+  "config": {"font": "Century Gothic"}
+}
