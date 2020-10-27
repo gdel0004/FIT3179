@@ -22,7 +22,7 @@
     {"calculate": "year(datum.Date)", "as": "Year"},
     {"filter": "datum.Year <= Year_above"}
   ],
-  "width": 400,
+  "width": "container",
   "height": 400,
   "layer": [
     {
