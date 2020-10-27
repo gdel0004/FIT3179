@@ -22,7 +22,7 @@
     {"calculate": "year(datum.Date)", "as": "Year"},
     {"filter": "datum.Year <= Year_above"}
   ],
-  "width": 900,
+  "width": 800,
   "height": 400,
   "title": {
     "text": "Wind Speed in Australia",
