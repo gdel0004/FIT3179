@@ -24,16 +24,6 @@
   ],
   "width": 800,
   "height": 400,
-  "title": {
-    "text": "Wind Speed in Australia",
-    "fontWeight": "normal",
-    "fontSize": 24,
-    "font": "Century Gothic",
-    "color": "#333",
-    "subtitle": "Using different locations around the country, the average wind speed varies with the seasons.",
-    "subtitleFont": "Century Gothic",
-    "subtitleColor": "#555"
-  },
   "layer": [
     {
       "mark": "line",
