@@ -15,7 +15,7 @@
             "fill": "rgb(232,230,230)",
             "stroke": "white"
           },
-          "projection": {"type": "mercator", "center": [109, -28], "scale": 700}
+          "projection": {"type": "mercator", "center": [111, -28], "scale": 700}
         },
         {
           "data": {
@@ -120,7 +120,7 @@
             },
             "tooltip": {"field": "Town", "type": "nominal"}
           },
-          "projection": {"type": "mercator", "center": [109, -28], "scale": 700}
+          "projection": {"type": "mercator", "center": [111, -28], "scale": 700}
         }
       ]
     },
