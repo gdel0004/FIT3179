@@ -1,7 +1,7 @@
 {
   "hconcat": [
     {
-      "width": 748,
+      "width": 745,
       "height": 500,
       "resolve": {"scale": {"radius": "independent"}},
       "layer": [
