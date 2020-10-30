@@ -153,7 +153,7 @@
               "scale": {"range": [0, 400]},
               "axis": null
             },
-            "x2": {"value": 200},
+            "x2": {"value": 190},
             "y2": {"value": 225}
           }
         },
@@ -164,7 +164,7 @@
           },
           "mark": {"type": "arc", "stroke": "lightgrey", "fillOpacity": 0},
           "encoding": {
-            "x": {"value": 200},
+            "x": {"value": 190},
             "y": {"value": 225},
             "radius": {
               "field": "r",
@@ -183,7 +183,7 @@
             "thetaOffset": 1.37444678595
           },
           "encoding": {
-            "x": {"value": 200},
+            "x": {"value": 190},
             "y": {"value": 225},
             "theta": {
               "field": "Direction",
@@ -244,7 +244,7 @@
             "color": "#555"
           },
           "encoding": {
-            "x": {"value": 200},
+            "x": {"value": 190},
             "y": {"value": 50},
             "text": {"field": "Town"}
           }
@@ -258,7 +258,7 @@
             "color": "#555"
           },
           "encoding": {
-            "x": {"value": 200},
+            "x": {"value": 190},
             "y": {"value": 365},
             "text": {"field": "desc1"}
           }
@@ -272,7 +272,7 @@
             "color": "#555"
           },
           "encoding": {
-            "x": {"value": 200},
+            "x": {"value": 190},
             "y": {"value": 385},
             "text": {"field": "desc2"}
           }
@@ -286,7 +286,7 @@
             "color": "#555"
           },
           "encoding": {
-            "x": {"value": 200},
+            "x": {"value": 190},
             "y": {"value": 405},
             "text": {"field": "desc3"}
           }
@@ -300,7 +300,7 @@
             "color": "#555"
           },
           "encoding": {
-            "x": {"value": 200},
+            "x": {"value": 190},
             "y": {"value": 425},
             "text": {"field": "desc4"}
           }
@@ -314,7 +314,7 @@
             "color": "#555"
           },
           "encoding": {
-            "x": {"value": 200},
+            "x": {"value": 190},
             "y": {"value": 445},
             "text": {"field": "desc5"}
           }
@@ -328,7 +328,7 @@
             "color": "#555"
           },
           "encoding": {
-            "x": {"value": 200},
+            "x": {"value": 190},
             "y": {"value": 465},
             "text": {"field": "desc6"}
           }
@@ -342,7 +342,7 @@
             "color": "#555"
           },
           "encoding": {
-            "x": {"value": 200},
+            "x": {"value": 190},
             "y": {"value": 485},
             "text": {"field": "desc7"}
           }
