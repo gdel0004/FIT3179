@@ -4,7 +4,7 @@
     "url": "https://raw.githubusercontent.com/gdel0004/FIT3179/main/windspeed.csv",
     "format": {"parse": {"Date": "utc:'%d/%m/%Y'"}}
   },
-  "width": "container",
+  "width": 400,
   "height": 400,
   "mark": {"type": "bar", "binSpacing": 0},
   "encoding": {
@@ -18,7 +18,11 @@
       "aggregate": "count",
       "scale": {"scheme": "bluepurple"},
       "legend": null
-    }
+    },
+    "tooltip": [
+      {"bin": {"step": 1}, "field": "WindSpeed", "title": "Wind Speed (km/h)"},
+      {"aggregate": "count", "title": "Number of Measurements"}
+    ]
   },
-  "config": {"font": "Century Gothic"}
+  "config": {}
 }
