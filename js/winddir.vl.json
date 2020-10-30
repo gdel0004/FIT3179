@@ -1,7 +1,7 @@
 {
   "hconcat": [
     {
-      "width": 750,
+      "width": 748,
       "height": 500,
       "resolve": {"scale": {"radius": "independent"}},
       "layer": [
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "width": 350,
+      "width": 380,
       "height": 500,
       "data": {
         "url": "https://raw.githubusercontent.com/gdel0004/FIT3179/main/windsimpledesc.csv"
