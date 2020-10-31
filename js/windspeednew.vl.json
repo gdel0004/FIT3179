@@ -20,11 +20,42 @@
   "transform": [
     {"calculate": "year(datum.Date)==Year_above", "as": "isSelected"},
     {"calculate": "year(datum.Date)", "as": "Year"},
+    {"calculate": "month(datum.Date)", "as": "Month"},
     {"filter": "datum.Year <= Year_above"}
   ],
   "width": "container",
   "height": 400,
+  "resolve": {
+    "scale": {
+      "x": "independent",
+      "color": "independent",
+      "strokeDash": "independent"
+    }
+  },
   "layer": [
+    {
+      "mark": {"type": "line", "strokeDash": [8, 8], "strokeWidth": 3},
+      "transform": [
+        {"filter": "datum.Year > 2008"},
+        {
+          "aggregate": [
+            {"op": "mean", "field": "WindSpeed", "as": "AvgWindSpeed"}
+          ],
+          "groupby": ["Month"]
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Month", "type": "temporal", "axis": null},
+        "color": {"value": "rgb(156, 179, 213)"},
+        "y": {
+          "field": "AvgWindSpeed",
+          "title": "Average Wind Speed (km/h)",
+          "type": "quantitative",
+          "scale": {"domain": [10, 18]},
+          "axis": {"tickMinStep": 1}
+        }
+      }
+    },
     {
       "mark": "line",
       "encoding": {
@@ -85,6 +116,29 @@
           "scale": {"range": [0, 1], "domain": [false, true]}
         },
         "color": {"value": "purple"}
+      }
+    },
+    {
+      "mark": "line",
+      "data": {
+        "values": [
+          {"categ": "Previous Years", "c": "lightgrey"},
+          {"categ": "Current Year", "c": "purple"},
+          {"categ": "Running Average", "c": "rgb(156, 179, 213)"}
+        ]
+      },
+      "encoding": {
+        "color": {
+          "field": "categ",
+          "type": "nominal",
+          "scale": {"range": {"field": "c"}},
+          "legend": {"title": "", "orient": "bottom-right", "offset": 9}
+        },
+        "strokeDash": {
+          "field": "categ",
+          "type": "nominal",
+          "scale": {"range": [10, 510, 2]}
+        }
       }
     }
   ],
