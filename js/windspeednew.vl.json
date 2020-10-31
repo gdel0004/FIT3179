@@ -28,8 +28,7 @@
   "resolve": {
     "scale": {
       "x": "independent",
-      "color": "independent",
-      "strokeDash": "independent"
+      "color": "independent"
     }
   },
   "layer": [
@@ -132,12 +131,7 @@
           "field": "categ",
           "type": "nominal",
           "scale": {"range": {"field": "c"}},
-          "legend": {"title": ""}
-        },
-        "strokeDash": {
-          "field": "categ",
-          "type": "nominal",
-          "scale": {"range": [10, 10, 2]}
+          "legend": {"title": "", "orient": "bottom-right", "offset": 9}
         }
       }
     }
