@@ -137,7 +137,7 @@
         "strokeDash": {
           "field": "categ",
           "type": "nominal",
-          "scale": {"range": [10, 510, 2]}
+          "scale": {"range": [10, 10, 2]}
         }
       }
     }
