@@ -132,7 +132,7 @@
           "field": "categ",
           "type": "nominal",
           "scale": {"range": {"field": "c"}},
-          "legend": {"title": "", "orient": "bottom-right", "offset": 9}
+          "legend": {"title": "", "orient": "bottom-right"}
         },
         "strokeDash": {
           "field": "categ",
